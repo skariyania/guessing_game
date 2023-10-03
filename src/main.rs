@@ -7,14 +7,17 @@ fn main() {
     let secret_number = rand::thread_rng().gen_range(0..=100);
 
     loop {
-        println!("Please input your guess.");
+        println!("\nPlease input your guess.");
         let mut guess = String::new();
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
         let guess: u8 = match guess.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue,
+            Err(_) => {
+                println!("type valid number!");
+                continue;
+            }
         };
         println!("The secret number is : {secret_number}");
         println!("You guessed: {guess}");
